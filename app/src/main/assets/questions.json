@@ -12,7 +12,6 @@
       "answer": "Athens"
     },
     {
-<<<<<<< HEAD
       "question": "How many countries participated in the 1932 Winter Olympics? ",
       "type": "text",
       "answer": "17"
@@ -20,10 +19,6 @@
     {
       "question": "Which color is one of the Olympic rings?",
       "type": "multi",
-=======
-      "question": "What tragic event almost ruined the 1972 Olympics?",
-      "type": "radio",
->>>>>>> c08ad89815d4a2051088976c4a4f15b67efac318
       "options": {
         "1" : "Blue",
         "2" : "Red",

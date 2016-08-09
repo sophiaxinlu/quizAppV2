@@ -28,7 +28,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] mQuestions;
     private static final String TAG_QUESTION = "question";
     private static final String TAG_ANSWER = "answer";
     private static final String TAG_QUESTION_TYPE = "type";
