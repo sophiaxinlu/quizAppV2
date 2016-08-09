@@ -13,4 +13,10 @@
     <string name="finsiedTest">Congrats!! You completed your test.</string>
     <string name="finalScore">Final Score</string>
     <string name="scoreToast">Your current score is: </string>
+    <string name="YourAnswer">Your Answer</string>
+
+    <string name="checkbox1">Blue</string>
+    <string name="checkbox2">Red</string>
+    <string name="checkbox3">White</string>
+    <string name="checkbox4">Black</string>
 </resources>
