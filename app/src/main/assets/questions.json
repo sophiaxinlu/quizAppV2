@@ -1,0 +1,104 @@
+{
+  "Olympics": [
+    {
+      "question": "Where were the first modern Olympics held?",
+      "options": {
+        "1" : "London",
+        "2" : "Paris",
+        "3" : "Rome",
+        "4" : "Athens"
+      },
+      "answer": "Athens"
+    },
+    {
+      "question": "What tragic event almost ruined the 1972 Olympics?",
+      "options": {
+        "1" : "A plane crash",
+        "2" : "A boating accident",
+        "3" : "Athletes taken hostage",
+        "4" : "A bus accident"
+      },
+      "answer": "Athletes taken hostage"
+    },
+    {
+      "question": "Where were the 2008 Olympic Summer Games held?",
+      "options": {
+        "1" : "Beijing",
+        "2" : "Seoul",
+        "3" : "Tokyo",
+        "4" : "Montreal"
+      },
+      "answer": "Beijing"
+    },
+    {
+      "question": "Which country, as of 2010, has the most Olympic gold medals? ",
+      "options": {
+        "1" : "USA",
+        "2" : "China",
+        "3" : "Great Britain",
+        "4" : "Germany"
+      },
+      "answer": "USA"
+    },
+    {
+      "question": "The very first record of the Olympics was in what year?",
+      "options": {
+        "1" : "1558 BC",
+        "2" : "1120",
+        "3" : "440",
+        "4" : "776 BC"
+      },
+      "answer": "776 BC"
+    },
+    {
+      "question": "Which country has the most Olympic medals as of 2010?",
+      "options": {
+        "1" : "Soviet Union",
+        "2" : "Germany",
+        "3" : "France",
+        "4" : "USA"
+      },
+      "answer": "USA"
+    },
+    {
+      "question": "Which color is not one of the Olympic rings?",
+      "options": {
+        "1" : "Blue",
+        "2" : "Red",
+        "3" : "White",
+        "4" : "Black"
+      },
+      "answer": "White"
+    },
+    {
+      "question": "The games were held as a tribute to which god?",
+      "options": {
+        "1" : "Athena",
+        "2" : "Mars",
+        "3" : "Zeus",
+        "4" : "Pluto"
+      },
+      "answer": "Zeus"
+    },
+    {
+      "question": "Officially known as the Games of the X Olympiad, which American city hosted the 1932 Summer Olympics?",
+      "options": {
+        "1" : "New York",
+        "2" : "Atlanta",
+        "3" : "Washington",
+        "4" : "Los Angeles"
+      },
+      "answer": "Los Angeles"
+    },
+    {
+      "question": "How many countries participated in the 1932 Winter Olympics? ",
+      "options": {
+        "1" : "17",
+        "2" : "21",
+        "3" : "23",
+        "4" : "19"
+      },
+      "answer": "17"
+    }
+  ]
+}

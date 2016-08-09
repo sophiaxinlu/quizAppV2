@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Olympic Games Trivia Quiz</string>
+    <string name="question1">Where were the first modern Olympics held?</string>
+    <string name="option1">London</string>
+    <string name="option2">Paris</string>
+    <string name="option3">Rome</string>
+    <string name="option4">Athens</string>
+    <string name="answer1">Athens</string>
+    <string name="seq">1/10</string>
+    <string name="correct">Correct!!</string>
+    <string name="notCorrect">Opps...The answer is: </string>
+    <string name="title_activity_summary">SummaryActivity</string>
+    <string name="finsiedTest">Congrats!! You completed your test.</string>
+    <string name="finalScore">Final Score</string>
+    <string name="scoreToast">Your current score is: </string>
+</resources>

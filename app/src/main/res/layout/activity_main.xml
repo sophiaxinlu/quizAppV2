@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff39add1"
+    android:id="@+id/background"
+    tools:context="com.sophiaxinlu.quiz.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+
+        <TextView android:text="@string/app_name" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:textSize="25sp"
+            android:textIsSelectable="true"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:textColor="#80ffffff" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/seq"
+            android:id="@+id/seq"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="15sp"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textColor="#80ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/question1"
+            android:id="@+id/QuestionID"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="20sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:textColor="#ffffff" />
+
+        <RadioGroup android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:id="@+id/options"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option1"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:theme="@style/MyRadioButton"/>
+
+            <RadioButton android:id="@+id/radio_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option2"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:theme="@style/MyRadioButton"/>
+
+            <RadioButton android:id="@+id/radio_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option3"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:theme="@style/MyRadioButton"/>
+
+            <RadioButton android:id="@+id/radio_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option4"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:theme="@style/MyRadioButton"/>
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/AnswerID"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="18sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:textColor="#ffffff" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/next"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#ffffff"
+            android:layout_weight="1"
+            android:textColor="#ff39add1"
+            android:layout_marginRight="10dp"
+            android:text="Next" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#ffffff"
+            android:textColor="#ff39add1"
+            android:layout_weight="1"
+            android:text="Submit" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewScore"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        android:textColor="#ff39add1"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:text="View Score" />
+</LinearLayout>
+</ScrollView>
