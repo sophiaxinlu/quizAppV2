@@ -28,11 +28,6 @@
       "answer": ["1", "2", "4"]
     },
     {
-      "question": "How many countries participated in the 1932 Winter Olympics? ",
-      "type": "text",
-      "answer": "17"
-    },
-    {
       "question": "Where were the 2008 Olympic Summer Games held?",
       "type": "radio",
       "options": {
