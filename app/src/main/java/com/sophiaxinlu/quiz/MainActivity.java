@@ -8,10 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-<<<<<<< HEAD
 import android.widget.CheckBox;
-=======
->>>>>>> c08ad89815d4a2051088976c4a4f15b67efac318
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
