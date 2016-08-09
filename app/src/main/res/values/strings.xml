@@ -13,4 +13,5 @@
     <string name="finsiedTest">Congrats!! You completed your test.</string>
     <string name="finalScore">Final Score</string>
     <string name="scoreToast">Your current score is: </string>
+    <string name="YourAnswer">Your Answer</string>
 </resources>

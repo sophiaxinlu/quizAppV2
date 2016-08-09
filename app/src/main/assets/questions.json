@@ -2,6 +2,7 @@
   "Olympics": [
     {
       "question": "Where were the first modern Olympics held?",
+      "type": "radio",
       "options": {
         "1" : "London",
         "2" : "Paris",
@@ -12,6 +13,7 @@
     },
     {
       "question": "What tragic event almost ruined the 1972 Olympics?",
+      "type": "radio",
       "options": {
         "1" : "A plane crash",
         "2" : "A boating accident",
@@ -21,7 +23,13 @@
       "answer": "Athletes taken hostage"
     },
     {
+      "question": "How many countries participated in the 1932 Winter Olympics? ",
+      "type": "text",
+      "answer": "17"
+    },
+    {
       "question": "Where were the 2008 Olympic Summer Games held?",
+      "type": "radio",
       "options": {
         "1" : "Beijing",
         "2" : "Seoul",
@@ -32,6 +40,7 @@
     },
     {
       "question": "Which country, as of 2010, has the most Olympic gold medals? ",
+      "type": "radio",
       "options": {
         "1" : "USA",
         "2" : "China",
@@ -42,6 +51,7 @@
     },
     {
       "question": "The very first record of the Olympics was in what year?",
+      "type": "radio",
       "options": {
         "1" : "1558 BC",
         "2" : "1120",
@@ -52,6 +62,7 @@
     },
     {
       "question": "Which country has the most Olympic medals as of 2010?",
+      "type": "radio",
       "options": {
         "1" : "Soviet Union",
         "2" : "Germany",
@@ -61,17 +72,8 @@
       "answer": "USA"
     },
     {
-      "question": "Which color is not one of the Olympic rings?",
-      "options": {
-        "1" : "Blue",
-        "2" : "Red",
-        "3" : "White",
-        "4" : "Black"
-      },
-      "answer": "White"
-    },
-    {
       "question": "The games were held as a tribute to which god?",
+      "type": "radio",
       "options": {
         "1" : "Athena",
         "2" : "Mars",
@@ -82,6 +84,7 @@
     },
     {
       "question": "Officially known as the Games of the X Olympiad, which American city hosted the 1932 Summer Olympics?",
+      "type": "radio",
       "options": {
         "1" : "New York",
         "2" : "Atlanta",
@@ -89,16 +92,6 @@
         "4" : "Los Angeles"
       },
       "answer": "Los Angeles"
-    },
-    {
-      "question": "How many countries participated in the 1932 Winter Olympics? ",
-      "options": {
-        "1" : "17",
-        "2" : "21",
-        "3" : "23",
-        "4" : "19"
-      },
-      "answer": "17"
     }
   ]
 }

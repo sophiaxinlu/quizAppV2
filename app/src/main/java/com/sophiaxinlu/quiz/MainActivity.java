@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private String[] mQuestions;
     private static final String TAG_QUESTION = "question";
     private static final String TAG_ANSWER = "answer";
+    private static final String TAG_QUESTION_TYPE = "type";
     private static final String TAG_OPTIONS = "options";
+    private static final String TYPE_RADIO = "radio";
+    private static final String TYPE_TEXT = "text";
+    private static final String TYPE_MULTI_CHOICE = "multi";
     private static final String TAG_OPTION1 = "1";
     private static final String TAG_OPTION2 = "2";
     private static final String TAG_OPTION3 = "3";
@@ -37,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private String answer;
     private String question;
+    private String type;
     private String selectedAnswer;
+    private String answerText;
     private int totalScore = 0;
 
     private String[] mBackgroundColor ={
@@ -72,16 +79,18 @@ public class MainActivity extends AppCompatActivity {
                 final ScrollView questionBg = (ScrollView) findViewById(R.id.background);
                 final Button nextButton = (Button) findViewById(R.id.next);
                 final Button submitButton = (Button) findViewById(R.id.submit);
-                final Button scoreButton = (Button) findViewById(R.id.viewScore);
                 final RadioGroup radioGroupView = (RadioGroup) findViewById(R.id.options);
-                JSONObject jsonObject = null;
+                final EditText editTextView = (EditText) findViewById(R.id.text_answer);
 
+
+
+                JSONObject jsonObject = null;
                 jsonObject = jsonArray.getJSONObject(0);
 
                 answer = jsonObject.getString(TAG_ANSWER);
+                type = jsonObject.getString(TAG_QUESTION_TYPE);
 
                 AnswerTextView.setText("");
-
                 View.OnClickListener nextButtonListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -89,8 +98,17 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             int qLen = jsonArray.length();
 
-                            if ((selectedAnswer != null && !selectedAnswer.isEmpty()) && selectedAnswer.equals(answer)){
-                                totalScore += 10;
+                            if (type.equals(TYPE_RADIO)) {
+                                if ((selectedAnswer != null && !selectedAnswer.isEmpty()) && selectedAnswer.equals(answer)){
+                                    totalScore += 10;
+                                }
+                            } else if (type.equals(TYPE_TEXT)) {
+                                answerText = editTextView.getText().toString();
+                                if ((answerText != null && !answerText.isEmpty()) && answerText.equals(answer)){
+                                    totalScore += 10;
+                                }
+                            } else if (type.equals(TYPE_MULTI_CHOICE)) {
+
                             }
 
                             if (i < qLen) {
@@ -98,22 +116,40 @@ public class MainActivity extends AppCompatActivity {
 
                                 question = jsonObject.getString(TAG_QUESTION);
                                 answer = jsonObject.getString(TAG_ANSWER);
+                                type = jsonObject.getString(TAG_QUESTION_TYPE);
 
-                                JSONObject options = jsonObject.getJSONObject(TAG_OPTIONS);
-                                //dynamically generate radio button content
-                                Radio1View.setText(options.getString(TAG_OPTION1));
-                                Radio2View.setText(options.getString(TAG_OPTION2));
-                                Radio3View.setText(options.getString(TAG_OPTION3));
-                                Radio4View.setText(options.getString(TAG_OPTION4));
-
+                                //load next question
                                 QuestionTextView.setText(question);
+
+                                if (type.equals(TYPE_RADIO)) {
+                                    JSONObject options = jsonObject.getJSONObject(TAG_OPTIONS);
+                                    //dynamically generate radio button content
+                                    Radio1View.setText(options.getString(TAG_OPTION1));
+                                    Radio2View.setText(options.getString(TAG_OPTION2));
+                                    Radio3View.setText(options.getString(TAG_OPTION3));
+                                    Radio4View.setText(options.getString(TAG_OPTION4));
+
+                                    editTextView.setVisibility(View.GONE);
+                                    radioGroupView.setVisibility(View.VISIBLE);
+
+                                } else if (type.equals(TYPE_TEXT)) {
+
+                                    editTextView.setVisibility(View.VISIBLE);
+                                    radioGroupView.setVisibility(View.GONE);
+                                } else if (type.equals(TYPE_MULTI_CHOICE)) {
+                                    JSONObject options = jsonObject.getJSONObject(TAG_OPTIONS);
+
+                                    editTextView.setVisibility(View.GONE);
+                                    radioGroupView.setVisibility(View.GONE);
+
+                                }
+
 
                                 int bgColor = Color.parseColor(getColor());
 
                                 questionBg.setBackgroundColor(bgColor);
                                 nextButton.setTextColor(bgColor);
                                 submitButton.setTextColor(bgColor);
-                                scoreButton.setTextColor(bgColor);
 
                                 i++;
                                 SequenceTextView.setText(i + "/10");
@@ -131,33 +167,43 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                //when user click submit button, calculate the score and show answer
+                //when user click submit button, calculate the score, show answer and current score
                 View.OnClickListener submitButtonListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if ((selectedAnswer != null && !selectedAnswer.isEmpty()) && selectedAnswer.equals(answer)){
+                        boolean isAnswerRight = false;
+                        //check if answer is correct
+                        if (type.equals(TYPE_RADIO)) {
+                            if ((selectedAnswer != null && !selectedAnswer.isEmpty()) && selectedAnswer.equals(answer)){
+                                isAnswerRight = true;
+                            }
+                        } else if (type.equals(TYPE_TEXT)) {
+                            answerText = editTextView.getText().toString();
+                            if ((answerText != null && !answerText.isEmpty()) && answerText.equals(answer)){
+                                isAnswerRight = true;
+                            }
+                        } else if (type.equals(TYPE_MULTI_CHOICE)) {
+
+                        }
+
+
+                        if (isAnswerRight) {
                             AnswerTextView.setText(R.string.correct);
                             totalScore += 10;
                         } else {
                             String message = getString(R.string.notCorrect) + " " + answer;
                             AnswerTextView.setText(message);
                         }
-                    }
-                };
 
-                //show current score
-                View.OnClickListener scoreButtonListener = new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String message = getString(R.string.scoreToast) + " " + totalScore;
-                        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                        String scoreMsg = getString(R.string.scoreToast) + " " + totalScore;
+                        Toast toast = Toast.makeText(getApplicationContext(), scoreMsg, Toast.LENGTH_SHORT);
                         toast.show();
                     }
                 };
 
+
                 nextButton.setOnClickListener(nextButtonListener);
                 submitButton.setOnClickListener(submitButtonListener);
-                scoreButton.setOnClickListener(scoreButtonListener);
 
                 radioGroupView.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
