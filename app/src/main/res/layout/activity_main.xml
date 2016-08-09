@@ -104,6 +104,7 @@
             android:inputType="text" />
 
 
+<<<<<<< HEAD
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,6 +144,8 @@
         </LinearLayout>
 
 
+=======
+>>>>>>> c08ad89815d4a2051088976c4a4f15b67efac318
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

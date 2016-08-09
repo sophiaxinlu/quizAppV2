@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.CheckBox;
+=======
+>>>>>>> c08ad89815d4a2051088976c4a4f15b67efac318
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private String selectedAnswer;
     private String answerText;
     private JSONArray answerArr;
+
     private int totalScore = 0;
 
     private String[] mBackgroundColor ={
@@ -90,8 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 final Button nextButton = (Button) findViewById(R.id.next);
                 final Button submitButton = (Button) findViewById(R.id.submit);
                 final RadioGroup radioGroupView = (RadioGroup) findViewById(R.id.options);
+
                 final LinearLayout multiChoiceView = (LinearLayout) findViewById(R.id.multiChoice);
                 final EditText editTextView = (EditText) findViewById(R.id.text_answer);
+
 
 
                 JSONObject jsonObject = null;
@@ -239,7 +245,6 @@ public class MainActivity extends AppCompatActivity {
                                 isAnswerRight = true;
                             }
                         } else if (type.equals(TYPE_MULTI_CHOICE)) {
-
                             //check if multi choice answers are correct
                            for (int i = 0; i <answerArr.length(); i++ ) {
                                try {
