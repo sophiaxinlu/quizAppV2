@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private String selectedAnswer;
     private String answerText;
     private JSONArray answerArr;
+    private String multiChoiceAnswer = "";
 
     private int totalScore = 0;
 
@@ -107,58 +108,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         JSONObject jsonObject = null;
+                        nextButton.setVisibility(View.GONE);
+                        submitButton.setVisibility(View.VISIBLE);
+
                         try {
                             int qLen = jsonArray.length();
-
-                            if (type.equals(TYPE_RADIO)) {
-                                if ((selectedAnswer != null && !selectedAnswer.isEmpty()) && selectedAnswer.equals(answer)){
-                                    totalScore += 10;
-                                }
-                            } else if (type.equals(TYPE_TEXT)) {
-                                answerText = editTextView.getText().toString();
-                                if ((answerText != null && !answerText.isEmpty()) && answerText.equals(answer)){
-                                    totalScore += 10;
-                                }
-                            } else if (type.equals(TYPE_MULTI_CHOICE)) {
-                                boolean isAnswerSelected = false;
-                                for (int i = 0; i <answerArr.length(); i++ ) {
-                                    try {
-                                        String choice = answerArr.getString(i);
-
-                                        if ((choice != null && !choice.isEmpty()) &&  choice.equals(TAG_OPTION1) ) {
-                                            if (Checkbox1View.isChecked()) {
-                                                isAnswerSelected = true;
-                                            } else {
-                                                isAnswerSelected = false;
-                                            }
-                                        } else if((choice != null && !choice.isEmpty()) && choice.equals(TAG_OPTION2)) {
-                                            if (Checkbox2View.isChecked()) {
-                                                isAnswerSelected = true;
-                                            }else {
-                                                isAnswerSelected = false;
-                                            }
-                                        } else if((choice != null && !choice.isEmpty()) && choice.equals(TAG_OPTION3)) {
-                                            if (Checkbox3View.isChecked()) {
-                                                isAnswerSelected = true;
-                                            }else {
-                                                isAnswerSelected = false;
-                                            }
-                                        }else if((choice != null && !choice.isEmpty()) && choice.equals(TAG_OPTION4)) {
-                                            if (Checkbox4View.isChecked()) {
-                                                isAnswerSelected = true;
-                                            }else {
-                                                isAnswerSelected = false;
-                                            }
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                if (isAnswerSelected) {
-                                    totalScore += 10;
-                                }
-                            }
 
                             if (i < qLen) {
                                 jsonObject = jsonArray.getJSONObject(i);
@@ -184,12 +138,12 @@ public class MainActivity extends AppCompatActivity {
 
                                 } else if (type.equals(TYPE_TEXT)) {
                                     answer = jsonObject.getString(TAG_ANSWER);
+                                    editTextView.setText("");
                                     editTextView.setVisibility(View.VISIBLE);
                                     radioGroupView.setVisibility(View.GONE);
                                     multiChoiceView.setVisibility(View.GONE);
                                 } else if (type.equals(TYPE_MULTI_CHOICE)) {
                                     answerArr = jsonObject.getJSONArray(TAG_ANSWER);
-                                    answer = answerArr.toString();
                                     JSONObject options = jsonObject.getJSONObject(TAG_OPTIONS);
 
                                     //dynamically generate MultiChoice button content
@@ -241,40 +195,36 @@ public class MainActivity extends AppCompatActivity {
                                 isAnswerRight = true;
                             }
                         } else if (type.equals(TYPE_MULTI_CHOICE)) {
+//
                             //check if multi choice answers are correct
-                           for (int i = 0; i <answerArr.length(); i++ ) {
-                               try {
-                                   String choice = answerArr.getString(i);
+                            try {
+                                if (((answerArr.getInt(0) == 1 && Checkbox1View.isChecked()) || (answerArr.getInt(0) == 0 && !Checkbox1View.isChecked()) )&&
+                                ((answerArr.getInt(1) == 1 && Checkbox2View.isChecked()) || (answerArr.getInt(1) == 0 && !Checkbox2View.isChecked()) ) &&
+                                ((answerArr.getInt(2) == 1 && Checkbox3View.isChecked()) || (answerArr.getInt(2) == 0 && !Checkbox3View.isChecked()) ) &&
+                                ((answerArr.getInt(3) == 1 && Checkbox4View.isChecked())) || (answerArr.getInt(3) == 0 && !Checkbox4View.isChecked())) {
+                                    isAnswerRight = true;
+                                }
 
-                                   if ((choice != null && !choice.isEmpty()) &&  choice.equals(TAG_OPTION1) ) {
-                                       if (Checkbox1View.isChecked()) {
-                                           isAnswerRight = true;
-                                       }else {
-                                           isAnswerRight = false;
-                                       }
-                                   } else if((choice != null && !choice.isEmpty()) && choice.equals(TAG_OPTION2)) {
-                                       if (Checkbox2View.isChecked()) {
-                                           isAnswerRight = true;
-                                       }else {
-                                           isAnswerRight = false;
-                                       }
-                                   } else if((choice != null && !choice.isEmpty()) && choice.equals(TAG_OPTION3)) {
-                                       if (Checkbox3View.isChecked()) {
-                                           isAnswerRight = true;
-                                       }else {
-                                           isAnswerRight = false;
-                                       }
-                                   }else if((choice != null && !choice.isEmpty()) && choice.equals(TAG_OPTION4)) {
-                                       if (Checkbox4View.isChecked()) {
-                                           isAnswerRight = true;
-                                       }else {
-                                           isAnswerRight = false;
-                                       }
-                                   }
-                               } catch (JSONException e) {
+                                if (answerArr.getInt(0) == 1) {
+                                  multiChoiceAnswer += Checkbox1View.getText() + " ";
+                                }
+
+                                if (answerArr.getInt(1) == 1) {
+                                    multiChoiceAnswer += Checkbox2View.getText() + " ";
+                                }
+
+                                if (answerArr.getInt(2) == 1) {
+                                    multiChoiceAnswer += Checkbox3View.getText() + " ";
+                                }
+
+                                if (answerArr.getInt(3) == 1) {
+                                    multiChoiceAnswer += Checkbox4View.getText() + " ";
+                                }
+
+                                answer = multiChoiceAnswer;
+                            } catch (JSONException e) {
                                    e.printStackTrace();
                                }
-                           }
 
                         }
 
@@ -289,6 +239,9 @@ public class MainActivity extends AppCompatActivity {
                         String scoreMsg = getString(R.string.scoreToast) + " " + totalScore;
                         Toast toast = Toast.makeText(getApplicationContext(), scoreMsg, Toast.LENGTH_SHORT);
                         toast.show();
+
+                        nextButton.setVisibility(View.VISIBLE);
+                        submitButton.setVisibility(View.GONE);
                     }
                 };
 
